@@ -4,10 +4,10 @@ FROM php:8.4-fpm
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git zip unzip libzip-dev libonig-dev curl nginx supervisor \
-    libpq-dev libsqlite3-dev
+    libpq-dev libsqlite3-dev nodejs npm
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath
+RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql mbstring zip exif pcntl bcmath
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -21,7 +21,7 @@ COPY . /var/www/html
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Build frontend assets (optioneel, Breeze)
+# Build frontend assets (optioneel, bijvoorbeeld voor Breeze/Vite)
 RUN npm install && npm run build || true
 
 # Set permissions for storage & cache
@@ -33,7 +33,14 @@ COPY ./deploy/nginx.conf /etc/nginx/sites-available/default
 # Expose port
 EXPOSE 80
 
-# Start PHP-FPM + Nginx
-CMD ["sh", "-c", "php artisan migrate --force && php artisan config:clear && php artisan cache:clear && php-fpm -D && nginx -g 'daemon off;'"]
-
-
+# Fix for runtime environment: clear cache & migrate at container start
+# DATABASE_URL en SESSION_DRIVER worden nu correct gebruikt bij runtime
+CMD ["sh", "-c", "\
+    php artisan migrate --force && \
+    php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan route:clear && \
+    php artisan view:clear && \
+    php-fpm -D && \
+    nginx -g 'daemon off;' \
+"]
