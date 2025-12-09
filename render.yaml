@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: portfolio-laravel
+    env: docker
+    repo: https://github.com/Siempje6/Portfolio-Siem
+    branch: main
+    dockerfilePath: Dockerfile
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: 'false'
+      - key: APP_KEY
+        value: base64:pk6Zg0ZWJtQKzYT11xaU23q+Rtg1F18HlakrZHRFGic=
+      - key: DATABASE_URL
+        value: postgresql://portfolio_wcpq_user:SnuuTHGpo5bEEyple7BUH9dVKy1hV8AK@dpg-d4rv6l3e5dus73aslfc0-a/portfolio_wcpq  
