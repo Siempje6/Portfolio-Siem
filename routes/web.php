@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
+
+Route::get('/contact', [MessageController::class, 'create'])->name('contact.form');
+Route::post('/contact', [MessageController::class, 'store'])->name('contact.store');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
