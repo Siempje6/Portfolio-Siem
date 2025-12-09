@@ -1,39 +1,37 @@
-# ---- Stage 0: Base PHP + extensions ----
+# Base image
 FROM php:8.4-fpm
 
-# System dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git zip unzip libpq-dev libzip-dev libonig-dev \
-    curl nginx supervisor nodejs npm
+    git zip unzip libzip-dev libonig-dev curl nginx supervisor \
+    libpq-dev libsqlite3-dev
 
-# PHP extensions
+# Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring zip exif pcntl bcmath
 
-# Composer installeren
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Werkomgeving
+# Set working directory
 WORKDIR /var/www/html
 
-# Code kopiëren
+# Copy project files
 COPY . /var/www/html
 
-# Composer dependencies
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Node dependencies & build assets
+# Build frontend assets (optioneel, Breeze)
 RUN npm install && npm run build || true
 
-# Storage & cache permissies
+# Set permissions for storage & cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Nginx configuratie kopiëren
+# Copy Nginx config
 COPY ./deploy/nginx.conf /etc/nginx/sites-available/default
 
 # Expose port
 EXPOSE 80
 
-# Start container: migrate, php-fpm + nginx
+# Start PHP-FPM + Nginx
 CMD ["sh", "-c", "php artisan migrate --force && php-fpm -F -R && nginx -g 'daemon off;'"]
-
-
