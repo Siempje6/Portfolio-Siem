@@ -34,4 +34,6 @@ COPY ./deploy/nginx.conf /etc/nginx/sites-available/default
 EXPOSE 80
 
 # Start container: migrate, php-fpm + nginx
-CMD ["sh", "-c", "php artisan migrate --force && php-fpm -D && nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "php artisan migrate --force && php-fpm -F -R && nginx -g 'daemon off;'"]
+
+
