@@ -18,6 +18,13 @@
         </div>
     </div>
 
+    <div class="images">
+        <img src="" alt="" class="1">
+        <img src="" alt="" class="2">
+        <img src="" alt="" class="3">
+        <img src="" alt="" class="4">
+    </div>
+
 </div>
 
 <style>
