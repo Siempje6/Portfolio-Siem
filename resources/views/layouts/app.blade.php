@@ -13,6 +13,13 @@
 </head>
 
 <body class="bg-gray-900 text-white relative">
+
+    <div class="preloader">
+        <h1 class="percent">0%</h1>
+    </div>
+
+
+
     <div id="dot"></div>
     <div id="ring"></div>
     <!-- Home section -->
@@ -44,6 +51,37 @@
     </a>
 
     <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #222;
+            color: #F39C12;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .percent {
+            font-size: 8vw;
+        }
+
+        .preloader.exit {
+            animation: slideDown 1s forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+
+
         * {
             box-sizing: border-box;
         }
@@ -307,6 +345,52 @@
 
 
         animate();
+
+
+
+
+
+
+
+
+
+
+        window.addEventListener('DOMContentLoaded', () => {
+
+            if (!sessionStorage.getItem('preloaderShown')) {
+
+                sessionStorage.setItem('preloaderShown', 'true'); 
+
+                const preloader = document.querySelector('.preloader');
+                const percentEl = document.querySelector('.percent');
+
+                let percent = 0;
+                let intervalSpeed = 20;
+
+                function updateLoader() {
+                    percent += 1;
+                    percentEl.textContent = percent + '%';
+
+                    let bgValue = 34 + Math.floor((percent / 100) * 221);
+                    preloader.style.backgroundColor = `rgb(${bgValue},${bgValue},${bgValue})`;
+
+                    if (percent === 90) intervalSpeed = 60;
+
+                    if (percent >= 100) {
+                        clearInterval(loaderInterval);
+                        setTimeout(() => {
+                            preloader.classList.add('exit');
+                        }, 1000);
+                    }
+                }
+
+                let loaderInterval = setInterval(updateLoader, intervalSpeed);
+
+            } else {
+                document.querySelector('.preloader').style.display = 'none';
+            }
+
+        });
     </script>
 </body>
 

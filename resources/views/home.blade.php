@@ -18,19 +18,19 @@
         </div>
     </div>
 
-    <div class="images">
-        <img src="" alt="" class="1">
-        <img src="" alt="" class="2">
-        <img src="" alt="" class="3">
-        <img src="" alt="" class="4">
+    <div class="image">
+        
     </div>
+
 
 </div>
 
 <style>
+
+
     .home {
         position: absolute;
-        top: 10px;
+        top: 20px;
         left: 75px;
         right: 10px;
         bottom: 10px;
