@@ -10,6 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="bg-gray-900 text-white relative">
@@ -39,8 +47,8 @@
         <div class="menu">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Projects</a></li>
+                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ url('projects') }}">Projects</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
@@ -49,6 +57,8 @@
     <a class="dribbble-link" href="https://dribbble.com/siem-va-hoof" target="_blank">
         <i class="fab fa-dribbble"></i>
     </a>
+
+
 
     <style>
         .preloader {
@@ -94,6 +104,23 @@
             font-size: calc(45px + 4vw);
             margin: 0;
             transform: scaleY(1.1);
+        }
+
+        h2 {
+            color: #f9f9ed;
+            font-family: "Titan One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: calc(35px + 3vw);
+            margin: 0;
+            transform: scaleY(1.1);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #f9f9ed;
+            margin: 0;
+            text-transform: uppercase;
         }
 
         h4 {
@@ -280,6 +307,14 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        .dribbble-link.show {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .dribbble-link>i {
@@ -359,7 +394,7 @@
 
             if (!sessionStorage.getItem('preloaderShown')) {
 
-                sessionStorage.setItem('preloaderShown', 'true'); 
+                sessionStorage.setItem('preloaderShown', 'true');
 
                 const preloader = document.querySelector('.preloader');
                 const percentEl = document.querySelector('.percent');
@@ -390,6 +425,16 @@
                 document.querySelector('.preloader').style.display = 'none';
             }
 
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const dribbbleLink = document.querySelector('.dribbble-link');
+
+            if (!dribbbleLink) return;
+
+            setTimeout(() => {
+                dribbbleLink.classList.add('show');
+            }, 4000);
         });
     </script>
 </body>

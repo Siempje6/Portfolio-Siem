@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,3 +22,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/projects', [PageController::class, 'projects'])->name('projects');
+
