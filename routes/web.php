@@ -27,3 +27,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/projects', [PageController::class, 'projects'])->name('projects');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
+Route::get('/migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return 'Migrated!';
+});
