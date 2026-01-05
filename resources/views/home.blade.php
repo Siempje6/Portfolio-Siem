@@ -95,6 +95,7 @@
             }
         </style>
 
+        <!--
         <div class="undertext">
             <h4>Used in website</h4>
             <div class="iconsbar">
@@ -115,6 +116,7 @@
                 </a>
             </div>
         </div>
+        -->
 
     </div>
 
