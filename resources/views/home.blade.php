@@ -21,21 +21,99 @@
     <div class="hero-text-image">
         <div class="img"></div>
         <div class="content-text">
-            <h3>Lorem ipsum dolor sit amet, consectetur:</h3>
+            <h3>Hello, I’m Siem – <span>Web Developer</span></h3>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi enim suscipit neque exercitationem. Tenetur, repellendus? Laudantium aperiam cum animi porro officiis nemo, saepe asperiores nam natus quia praesentium autem?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum explicabo eligendi aliquam! Rem iste vitae, soluta error optio voluptates modi, placeat earum id aperiam commodi nostrum temporibus repellendus sit officiis.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum hic maiores autem in.
+                I craft modern, user-friendly websites that combine functionality and aesthetics. 
+                My goal is to help businesses connect with their audience through clean design and smooth performance.
             </p>
+            <div class="buttongroup">
+                <a href="{{ route('projects') }}" class="btn-full">Projects</a>
+                <a href="{{ route('contact') }}" class="btn-open">Contact</a>
+            </div>
         </div>
     </div>
 
     <div class="homefooter">
-        <h1>Lorem Ipsum Dolor</h1>
+        <style>
+            .buttongroup {
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: row; 
+                gap: 20px;
+                align-items: center;
+            }
+            .buttongroup .btn-full {
+                padding: 10px 30px;
+                color: #fff;
+                background: #f39c12;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            .buttongroup .btn-open {
+                border: #f39c12 2px solid;
+                padding: 8px 28px;
+                border-radius: 50px;
+                color: #f39c12;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            .content-text h3 span {
+                color: #f39c12;
+            }
+            .undertext {
+                grid-row: 2/3;
+            }
+
+            .iconsbar-hidden {
+                visibility: hidden;
+            }
+
+            .iconsbar {
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .iconsbar i {
+                font-size: 1rem;
+                display: inline-block;
+                margin: 20px 40px;
+                letter-spacing: 0.1rem;
+            }
+
+            .iconsbar a {
+                color: #f39c12;
+                opacity: 0.7;
+            }
+
+            .iconsbar a:hover {
+                opacity: 1;
+            }
+        </style>
 
         <div class="undertext">
             <h4>Used in website</h4>
-            <p>Laravel, Breeze</p>
+            <div class="iconsbar">
+                <a href="https://laravel.com/" target="_blank">
+                    <i class="fab fa-laravel"> Laravel</i>
+                </a>
+                <a href="https://web.dev/html" target="_blank">
+                    <i class="fa-brands fa-html5"> Html</i>
+                </a>
+                <a href="https://web.dev/css" target="_blank">
+                    <i class="fa-brands fa-css3"> Css</i>
+                </a>
+                <a href="https://www.php.net/" target="_blank">
+                    <i class="fa-brands fa-php"> Php</i>
+                </a>
+                <a href="https://web.dev/javascript" target="_blank">
+                    <i class="fa-brands fa-square-js"> Js</i>
+                </a>
+            </div>
         </div>
 
     </div>

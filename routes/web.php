@@ -25,4 +25,5 @@ require __DIR__.'/auth.php';
 
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/projects', [PageController::class, 'projects'])->name('projects');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 

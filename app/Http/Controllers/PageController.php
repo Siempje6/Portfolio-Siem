@@ -14,4 +14,8 @@ class PageController extends Controller
     {
         return view('pages.projects');
     }
+    public function contact()
+    {
+        return view('pages.contact');
+    }
 }

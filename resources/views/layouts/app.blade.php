@@ -17,7 +17,6 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
-
 </head>
 
 <body class="bg-gray-900 text-white relative">
@@ -48,8 +47,8 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ url('projects') }}">Projects</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{{ route('projects') }}">Projects</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -117,7 +116,7 @@
         }
 
         h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #f9f9ed;
             margin: 0;
             text-transform: uppercase;
@@ -126,6 +125,14 @@
         h4 {
             font-size: 1.6rem;
             color: #f9f9ed;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        h5 {
+            font-size: 1.3rem;
+            color: white;
+            font-weight: bold;
             margin: 0;
             text-transform: uppercase;
         }
@@ -140,7 +147,7 @@
 
         p {
             color: #f9f9ed;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         body {
@@ -334,7 +341,7 @@
         let ringX = 0;
         let ringY = 0;
 
-        const speed = 0.3;
+        const speed = 0.25;
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
